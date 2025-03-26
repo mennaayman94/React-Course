@@ -1,0 +1,9 @@
+1- Create A functional Component Called Department Card
+2- this page will have a button and a simple card has the following data:
+DepartMentName
+Number of students
+Courses: array of Courses
+3- There will be a button when user clicks on the button the number is students will be incremented by one
+4- Please add simple css to the component in a separate file 
+5- Make the same logic with Class component also 
+6- Note: Please create a github account to be able to use it starting from tomorrow
