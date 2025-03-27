@@ -54,6 +54,7 @@ function Product(props) {
           {counter}
         </Typography>
         <Button onClick={()=>navigate(`/items/${props.item.id}`)}>Go to details</Button>
+        {/* <Link to={`/items/${props.item.id}`}>go to</Link> */}
         {showButton&&( <>
           <Button onClick={handleIncrement} size="small">
           Increment +

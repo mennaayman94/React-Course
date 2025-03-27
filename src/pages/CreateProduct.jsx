@@ -17,7 +17,8 @@ function CreateProduct() {
   console.log(formValues, "values");
   const submitForm = async () => {
     try {
-      if (!priceHasError && !titleIsRequired) {
+      const isValid= validateForm()
+      if ((!priceHasError && !titleIsRequired)&& isValid) {
         const res = await axios.post(
           "https://fakestoreapi.com/products",
           formValues
@@ -32,6 +33,14 @@ function CreateProduct() {
       console.log(error);
     }
   };
+  const validateForm=()=>{
+    if (formValues.title === "" || isNaN(parseFloat(formValues.price)) || parseFloat(formValues.price) <= 0){
+
+return false
+    }else{
+      return true
+    }
+  }
   const handleOnChange = (event) => {
     setPriceError(false);
     setTitleIsRequired(false);
