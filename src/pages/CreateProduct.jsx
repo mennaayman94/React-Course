@@ -35,7 +35,8 @@ function CreateProduct() {
   };
   const validateForm=()=>{
     if (formValues.title === "" || isNaN(parseFloat(formValues.price)) || parseFloat(formValues.price) <= 0){
-
+      setPriceError(true);
+      setTitleIsRequired(true);
 return false
     }else{
       return true

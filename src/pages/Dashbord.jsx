@@ -6,12 +6,18 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import { Button } from "@mui/material";
 import { useNavigate, useLocation } from "react-router";
+import Badge from "@mui/material/Badge";
+import IconButton from "@mui/material/IconButton";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useSelector } from "react-redux";
+import { selectorCartCount } from "../slices/cart";
+
 function Dashboard() {
   //simulate compoennt did mount in class component
   const [products, setProducts] = useState([]);
-  const navigate= useNavigate()
-  let location = useLocation()
-  console.log(location,"location")
+  const navigate = useNavigate();
+  let location = useLocation();
+  console.log(location, "location");
   useEffect(() => {
     // fetch('https://fakestoreapi.com/products')
     // .then(res=>res.json())
@@ -21,17 +27,22 @@ function Dashboard() {
       setProducts(res.data);
     });
   }, []);
-
+const items=useSelector(selectorCartCount)
+console.log(items, "from store")
   return (
     <>
       {/* {products.map((item) => {
         return <Product key={item.id} item={item}/>;
       })} */}
-
+      <IconButton onClick={() => navigate("/cart")} aria-label="cart">
+        <Badge badgeContent={items} color="secondary">
+          <ShoppingCartIcon />
+        </Badge>
+      </IconButton>
       <Box sx={{ flexGrow: 1 }}>
-      <Button onClick={()=>navigate("/createproduct")}>
-        Add New Product
-      </Button>
+        <Button onClick={() => navigate("/createproduct")}>
+          Add New Product
+        </Button>
         <Grid
           container
           spacing={{ xs: 2, md: 3 }}

@@ -6,11 +6,17 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router";
+import { UserContext } from "../Context/UserContext";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../slices/cart";
 
 function Product(props) {
   const [counter, setCounter] = useState(0);
   const [showOutOfStock, setShowOutOfStock] = useState(false);
   const [showButton, setShowButton]= useState(true)
+  const dispatch= useDispatch()
+  //  const {user}=useContext(UserContext)
+  //  console.log(user,"user")
   const navigate= useNavigate()
   const handleIncrement = () => {
     setCounter((counter) => counter + 1);
@@ -56,12 +62,13 @@ function Product(props) {
         <Button onClick={()=>navigate(`/items/${props.item.id}`)}>Go to details</Button>
         {/* <Link to={`/items/${props.item.id}`}>go to</Link> */}
         {showButton&&( <>
-          <Button onClick={handleIncrement} size="small">
+          {/* <Button onClick={handleIncrement} size="small">
           Increment +
         </Button>
         <Button onClick={handleDecrement} size="small">
           decrement -
-        </Button>
+        </Button> */}
+        <Button onClick={()=>dispatch(addToCart(props.item))}>Add To Cart</Button>
         </>
           )}
        

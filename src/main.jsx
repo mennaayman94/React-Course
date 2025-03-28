@@ -7,14 +7,22 @@ import CreateProduct from "./pages/CreateProduct.jsx";
 import SignIn from "./pages/Signin.jsx";
 import SignUp from "./pages/Signup.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
+import UserProvider from "./Provider/UserProvider.jsx";
+import { Provider } from 'react-redux'
+import { store } from "./store/store.js";
+import Cart from "../src/pages/Cart.jsx"
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
+    {/* <UserProvider> */}
+<Provider store={store}>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
+        <Route path="/" element={<SignIn />} />
+       <Route path="/products" element={<App />} />
         <Route path="/createproduct" element={<CreateProduct />} />
         <Route path="/items/:id" element={<ProductDetails />} />
+        <Route path="/cart" element={<Cart />} />
         {/* nested routes */}
         <Route path="user">
           <Route index element={<SignUp />} />
@@ -22,5 +30,7 @@ createRoot(document.getElementById("root")).render(
         </Route>
       </Routes>
     </BrowserRouter>
+    {/* </UserProvider> */}
+    </Provider>
   </StrictMode>
 );
